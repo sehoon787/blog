@@ -24,7 +24,7 @@ def make_linear(w=0.5, b=0.8, size=50, noise=1.0):
     print(f'w: {w}, b: {b}')
     return x, yy
 
-# a=기울기, b=절편
+# beta=w=기울기, alpha=b=절편
 beta = 0.8
 alpha = 2
 
