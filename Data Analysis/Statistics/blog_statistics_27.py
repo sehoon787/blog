@@ -68,5 +68,5 @@ df['y'] = y
 df['predict'] = res
 
 print("결정 계수: ", r2_score(y, res))
-print("상관 계수", df.y.corr(df.predict))
+print("상관 계수: ", df.y.corr(df.predict))
 print("MSE: ", mean_squared_error(y, res))
