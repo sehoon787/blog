@@ -52,7 +52,6 @@ def MLR(x, y, epochs=5000, learning_rate=0.00001):
 
     return w1, w2, b, result
 
-
 def LR(x, y):
     x1 = x[:, 0]
     x2 = x[:, 1]
