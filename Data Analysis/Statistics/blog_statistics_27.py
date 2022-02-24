@@ -49,7 +49,7 @@ def SLR(x, y, epochs=5000, learning_rate=0.01):
 def LR(x, y):
     model = LinearRegression()
     model.fit(x, y)
-    res = model.coef_[0]*x + model.intercept_
+    res = model.coef_[0]*x + model.intercept_[0]
     print('w: ', model.coef_[0][0], ", b:", model.intercept_[0])
 
     plt.figure(figsize=(10, 7))
