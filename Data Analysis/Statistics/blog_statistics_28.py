@@ -13,6 +13,11 @@ def make_data(size=100, noise=1):
     noise = np.random.uniform(-abs(noise), abs(noise), size=y.shape)
     yy = y + noise  # 노이즈 추가
 
+    plt.scatter(x1, y)
+    plt.scatter(x2, y)
+    plt.suptitle("Sample Data", size=24)
+    plt.show()
+
     return x1, x2, yy
 
 def MLR(x, y, epochs=5000, learning_rate=0.00001):
