@@ -63,9 +63,8 @@ def LR(x, y):
 x, y = make_data(size=100, noise=6)
 _, _, res = LR(x, y)
 # w, b, res = SLR(x, y)
-df = pd.DataFrame(x, columns=['x'])
-df['y'] = y
-df['predict'] = res
+data = np.concatenate((x, y, res), axis=1)
+df = pd.DataFrame(data, columns=['x', 'y', 'predict'])
 
 print("결정계수: ", r2_score(y, res))
 print("상관계수: \n", df.corr())
