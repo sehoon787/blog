@@ -75,16 +75,16 @@ def LR(x, y):
     plt.title('w1=' + str(round(w1, 3)) + 'w2=' + str(round(w2, 3)) + ', b=' + str(round(b, 3)))
     plt.show()
 
-    return w1, w2, b, res
+    return w1, w2, b, result
 
-x, x2, y = make_data(size=100, noise=6)
-data = np.concatenate((x, x2), axis=1)
+x1, x2, y = make_data(size=100, noise=6)
+data = np.concatenate((x1, x2), axis=1)
 w1, w2, b, res = MLR(data, y)
 # _, _, _, res = LR(data, y)
-df = pd.DataFrame(x, columns=['x'])
+df = pd.DataFrame(data, columns=['x1', 'x2'])
 df['y'] = y
 df['predict'] = res
 
 print("결정계수: ", r2_score(y, res))
-print("상관계수: ", df.y.corr(df.predict))
+print("상관계수: \n", df.corr())
 print("MSE: ", mean_squared_error(y, res))
