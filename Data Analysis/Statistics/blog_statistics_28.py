@@ -6,14 +6,14 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 
 def make_data(size=100, noise=1):
-    x = 2*np.random.rand(size, 1)
+    x1 = 2*np.random.rand(size, 1)
     x2 = 3*np.random.rand(size, 1)
-    y = 3*x+x2+np.random.randn(size, 1)
+    y = 3*x1+x2+np.random.randn(size, 1)
 
     noise = np.random.uniform(-abs(noise), abs(noise), size=y.shape)
     yy = y + noise  # 노이즈 추가
 
-    return x, x2, yy
+    return x1, x2, yy
 
 def MLR(x, y, epochs=5000, learning_rate=0.00001):
     x1 = x[:, 0]
