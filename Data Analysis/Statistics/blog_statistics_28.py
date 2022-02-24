@@ -81,9 +81,8 @@ x1, x2, y = make_data(size=100, noise=6)
 data = np.concatenate((x1, x2), axis=1)
 w1, w2, b, res = MLR(data, y)
 # _, _, _, res = LR(data, y)
-df = pd.DataFrame(data, columns=['x1', 'x2'])
-df['y'] = y
-df['predict'] = res
+data = np.concatenate((x1, x2, y, res), axis=1)
+df = pd.DataFrame(data, columns=['x1', 'x2', 'y', 'predict'])
 
 print("결정계수: ", r2_score(y, res))
 print("상관계수: \n", df.corr())
