@@ -6,8 +6,8 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 
 def make_data(size=100, noise=1):
-    x1 = 2*np.random.rand(size, 1)
-    x2 = 3*np.random.rand(size, 1)
+    x1 = np.linspace(-10, 15, size).reshape(-1, 1)*21
+    x2 = np.linspace(-10, 15, size).reshape(-1, 1)*3
     y = 3*x1+x2+np.random.randn(size, 1)
 
     noise = np.random.uniform(-abs(noise), abs(noise), size=y.shape)
@@ -20,7 +20,7 @@ def make_data(size=100, noise=1):
 
     return x1, x2, yy
 
-def MLR(x, y, epochs=5000, learning_rate=0.00001):
+def MLR(x, y, epochs=5000, learning_rate=0.00000001):
     x1 = x[:, 0]
     x2 = x[:, 1]
 
