@@ -7,7 +7,7 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import r2_score
 
 def make_data(size=100, noise=1):
-    x = np.linspace(-5, 11, size).reshape(100, 1)
+    x = np.linspace(-5, 11, size).reshape(size, 1)
     y = 3*x**2 + 3*x
 
     noise = np.random.uniform(-abs(noise), abs(noise), size=y.shape)
