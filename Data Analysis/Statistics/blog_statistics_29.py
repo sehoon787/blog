@@ -19,8 +19,8 @@ def make_data(size=100, noise=1):
 
     return x, yy
 
-def poly(x):
-    model = PolynomialFeatures(degree=2, include_bias=False)
+def poly(x, degree=2):
+    model = PolynomialFeatures(degree=degree, include_bias=False)
     x_poly = model.fit_transform(x)
     return x, x_poly
 
