@@ -52,8 +52,13 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, shuffle
 model = LogisticRegression(penalty='l2', max_iter=100)
 model.fit(x_train, y_train)
 
+for i, coef in enumerate(model.coef_):
+    res = sum(coef*x_test.iloc[0]) + model.intercept_[i]
+    print(i, "등급일 가능성 : ", res)
+
 # 로지스틱 모델 학습 성능 비교
 y_pred = model.predict(x_test)  # 예측 결과 라벨
+print("등급 : ", y_pred[0])
 
 # 정확도 측정
 print(round(accuracy_score(y_pred, y_test), 3)*100, "%")
