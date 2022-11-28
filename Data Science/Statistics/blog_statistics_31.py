@@ -11,28 +11,32 @@ import pandas as pd
 iris = load_iris()
 df = pd.DataFrame(data=np.c_[iris.data])
 
-# 데이터셋 정규화
-scaler = StandardScaler()
-scaler.fit(df)
-df_scaled = scaler.transform(df)
 
-# type casting with setting target
-df_scaled = pd.DataFrame(df_scaled, columns=['sepal length', 'sepal width', 'petal length', 'petal width'])
-df_scaled['target'] = iris.target
+def normalize(df):
+    # 데이터셋 정규화
+    scaler = StandardScaler()
+    scaler.fit(df)
+    df_scaled = scaler.transform(df)
 
-print(df_scaled)
+    # type casting with setting target
+    df_scaled = pd.DataFrame(df_scaled, columns=['sepal length', 'sepal width', 'petal length', 'petal width'])
+    df_scaled['target'] = iris.target
 
-# 2차원으로 차원 축소, target 정보는 제외
-pca = PCA(n_components=2)
-pca.fit(df_scaled.iloc[:, :-1])
+    print(df_scaled)
 
-# 데이터 프레임으로 자료형 변환 및 target class 정보 추가
-df_pca = pca.transform(df_scaled.iloc[:, :-1])
-print(df_pca)
-print(pca.explained_variance_ratio_)
+    return df_scaled
 
 
-def draw_plot(df_pca):
+def draw_plot(df_scaled):
+    # 2차원으로 차원 축소, target 정보는 제외
+    pca = PCA(n_components=2)
+    pca.fit(df_scaled.iloc[:, :-1])
+
+    # 데이터 프레임으로 자료형 변환 및 target class 정보 추가
+    df_pca = pca.transform(df_scaled.iloc[:, :-1])
+    print(df_pca)
+    print(pca.explained_variance_ratio_)
+
     df_pca = pd.DataFrame(df_pca, columns=['component 0', 'component 1'])
 
     # class target 정보 불러오기
@@ -80,6 +84,6 @@ def pca_test(n=4):
     print(confusion_matrix(y, pred))
 
 
-draw_plot(df_pca)
+draw_plot(normalize(df))
 pca_test(n=4)
 pca_test(n=2)
